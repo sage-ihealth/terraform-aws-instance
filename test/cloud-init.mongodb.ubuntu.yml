@@ -1,0 +1,19 @@
+#cloud-config
+package_update: true
+runcmd:
+  - echo "=========== sleep for 2 minutes ==========="
+  - sleep 2m
+  - sudo apt-get update
+
+  - echo "========= install mongo shell on host =========="
+  - sudo apt-get install -y mongodb
+  - sudo service mongodb stop
+  - sudo service mongodb status
+
+  - echo "========== Setup Mongodb container ======== "
+  - sudo docker run --name mongo -v /data/mongodb:/data/db -v /efs/mongodb/keys/mongodb-keyfile:/opt/keyfile --hostname="${node_hostname}" -p 27017:27017 -d percona/percona-server-mongodb:3.4 --smallfiles
+  - sudo docker ps --all
+
+
+
+
