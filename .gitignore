@@ -1,0 +1,6 @@
+
+dev-new/.terraform/
+test/.terraform/
+**/.terraform/*
+lambda/.terraform/
+**/.DS_Store
